@@ -1,0 +1,14 @@
+[2026-10-26 10:33:43,486] WARNING in app: Gemini student-feedback request failed: AIConfigurationError
+PASS teacher login and role-protected dashboard
+PASS teacher creates a draft exam
+PASS manual question validation and insertion
+PASS editing a question in an unused draft
+PASS deleting and re-adding a draft question
+PASS publication requires a question and makes the paper available
+PASS student login and role-protected dashboard
+PASS student starts a timed attempt
+PASS answer autosave with CSRF protection
+PASS submission and deterministic Python score: 2/2 (100.00%)
+PASS result review; unavailable Gemini key is reported clearly, no fake feedback
+PASS health check: MySQL connected; live AI configured=False
+CLEANUP temporary smoke-test exam and attempt

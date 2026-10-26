@@ -1,0 +1,7 @@
+Cookie-less hosted-preview and live Gemini check (2026-10-26; Chromium Playwright)
+- Teacher sign-in works without browser cookies using the signed preview token.
+- The real Generate Drafts form showed the spinner/indeterminate animation while waiting.
+- Gemini returned one validated question with gemini-3.1-flash-lite; it was saved as a pending teacher-review draft.
+- Student sign-in also works without cookies.
+- The real student-feedback form showed the loading animation, returned Gemini feedback from submitted answer evidence, and the review appeared on the result page.
+- No API key or generated question/review text is recorded here.

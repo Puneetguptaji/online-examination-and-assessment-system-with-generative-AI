@@ -1,0 +1,42 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ExamAI Python — DFD</title></head><body style="margin:0;background:#edf2fa"><svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+<title id="title">ExamAI Python Edition — Data Flow Diagram</title><desc id="desc">Students and faculty use a Flask application. The application reads and writes a MySQL database and sends question-generation and grounded-feedback prompts to the Gemini API.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f6f8fc"/><stop offset="1" stop-color="#edf2fa"/></linearGradient>
+  <linearGradient id="app" x1="0" x2="1"><stop offset="0" stop-color="#214b8d"/><stop offset="1" stop-color="#3e6ed0"/></linearGradient>
+  <linearGradient id="gem" x1="0" x2="1"><stop offset="0" stop-color="#6f56cf"/><stop offset="1" stop-color="#9076ec"/></linearGradient>
+  <linearGradient id="db" x1="0" x2="1"><stop offset="0" stop-color="#188c78"/><stop offset="1" stop-color="#3bb596"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#233959" flood-opacity=".13"/></filter>
+  <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1 L11 6 L1 11 Z" fill="#4168b4"/></marker>
+  <marker id="arrowGray" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1 L11 6 L1 11 Z" fill="#70819a"/></marker>
+  <marker id="arrowPurple" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1 L11 6 L1 11 Z" fill="#795edb"/></marker>
+  <marker id="arrowTeal" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1 L11 6 L1 11 Z" fill="#22957e"/></marker>
+  <style>
+    .title{font:800 34px Inter,Arial,sans-serif;fill:#182b43;letter-spacing:-.7px}.sub{font:16px Inter,Arial,sans-serif;fill:#68788e}.node{filter:url(#shadow)}.nodeTitle{font:800 21px Inter,Arial,sans-serif;fill:#fff}.nodeText{font:14px Inter,Arial,sans-serif;fill:#eaf0fb}.outsideTitle{font:800 19px Inter,Arial,sans-serif;fill:#1e314b}.outsideText{font:14px Inter,Arial,sans-serif;fill:#66758a}.arrowLabel{font:700 13px Inter,Arial,sans-serif;fill:#43546d}.footer{font:13px Inter,Arial,sans-serif;fill:#8290a2}
+  </style>
+</defs>
+<rect width="1500" height="900" fill="url(#bg)"/>
+<text x="72" y="74" class="title">ExamAI Python Edition</text><text x="72" y="105" class="sub">Data Flow Diagram · Python / Flask · MySQL · Gemini API</text>
+<rect x="50" y="145" width="1400" height="680" rx="28" fill="#fff" stroke="#e2e8f0"/>
+<!-- User entities -->
+<g class="node"><rect x="100" y="260" width="270" height="145" rx="20" fill="#fff" stroke="#dbe4f0" stroke-width="2"/><circle cx="146" cy="308" r="22" fill="#eaf1ff"/><text x="139" y="315" font-size="22" fill="#315ca5">S</text><text x="182" y="307" class="outsideTitle">Student</text><text x="125" y="352" class="outsideText">Sign in · take timed paper</text><text x="125" y="378" class="outsideText">Review score · request AI feedback</text></g>
+<g class="node"><rect x="100" y="555" width="270" height="145" rx="20" fill="#fff" stroke="#dbe4f0" stroke-width="2"/><circle cx="146" cy="603" r="22" fill="#f0edff"/><text x="139" y="610" font-size="22" fill="#7056cf">T</text><text x="182" y="602" class="outsideTitle">Teacher / Faculty</text><text x="125" y="647" class="outsideText">Create paper · add questions</text><text x="125" y="673" class="outsideText">Review AI drafts · view analytics</text></g>
+<!-- Main application -->
+<g class="node"><rect x="510" y="305" width="450" height="330" rx="24" fill="url(#app)"/><rect x="510" y="305" width="450" height="66" rx="24" fill="#183f7d" opacity=".45"/><text x="548" y="348" class="nodeTitle">Python Web Application</text><text x="548" y="414" class="nodeText" font-weight="700">Flask routes + application services</text><text x="548" y="451" class="nodeText">Role-based access · session security</text><text x="548" y="484" class="nodeText">Autosave · timer · submission checks</text><text x="548" y="517" class="nodeText">Deterministic scoring in Python</text><text x="548" y="550" class="nodeText">AI question validation + review queue</text><text x="548" y="583" class="nodeText">Grounded feedback, cached per attempt</text></g>
+<!-- AI -->
+<g class="node"><rect x="1100" y="210" width="270" height="190" rx="22" fill="url(#gem)"/><text x="1135" y="254" class="nodeTitle">Google Gemini API</text><text x="1135" y="299" class="nodeText">Question drafts</text><text x="1135" y="329" class="nodeText">Structured JSON response</text><text x="1135" y="359" class="nodeText">Personalised study feedback</text></g>
+<!-- database -->
+<g class="node"><rect x="1100" y="545" width="270" height="190" rx="22" fill="url(#db)"/><text x="1135" y="589" class="nodeTitle">MySQL 8 Database</text><text x="1135" y="634" class="nodeText">Users · exams · questions</text><text x="1135" y="664" class="nodeText">Attempts · answers</text><text x="1135" y="694" class="nodeText">AI drafts · feedback cache</text></g>
+<!-- user flows -->
+<path d="M370 300 C425 300 445 365 510 365" fill="none" stroke="#4168b4" stroke-width="4" marker-end="url(#arrowBlue)"/><text x="386" y="278" class="arrowLabel">Exam requests</text>
+<path d="M510 420 C448 420 424 360 370 360" fill="none" stroke="#70819a" stroke-width="3" marker-end="url(#arrowGray)"/><text x="390" y="445" class="arrowLabel">Exam result</text>
+<path d="M370 600 C430 600 446 575 510 575" fill="none" stroke="#795edb" stroke-width="4" marker-end="url(#arrowPurple)"/><text x="393" y="625" class="arrowLabel">Paper setup</text>
+<path d="M510 520 C450 520 426 650 370 650" fill="none" stroke="#70819a" stroke-width="3" marker-end="url(#arrowGray)"/><text x="387" y="690" class="arrowLabel">Analytics</text>
+<!-- AI flows -->
+<path d="M960 365 C1020 365 1025 300 1100 300" fill="none" stroke="#795edb" stroke-width="4" marker-end="url(#arrowPurple)"/><text x="970" y="337" class="arrowLabel">Prompt</text>
+<path d="M1100 345 C1035 345 1022 420 960 420" fill="none" stroke="#795edb" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#arrowPurple)"/><text x="980" y="445" class="arrowLabel">JSON response</text>
+<!-- DB flows -->
+<path d="M960 535 C1025 535 1035 610 1100 610" fill="none" stroke="#22957e" stroke-width="4" marker-end="url(#arrowTeal)"/><text x="976" y="568" class="arrowLabel">DB write</text>
+<path d="M1100 680 C1035 680 1025 585 960 585" fill="none" stroke="#22957e" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#arrowTeal)"/><text x="979" y="715" class="arrowLabel">DB records</text>
+<text x="76" y="790" class="footer">Key design rule: Gemini can suggest and explain; only Python computes and stores the exam score.</text>
+</svg>
+</body></html>

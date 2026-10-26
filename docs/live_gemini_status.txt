@@ -1,0 +1,8 @@
+Live Gemini verification (2026-10-26)
+
+- The supplied API key was loaded into the running server process environment only. It is not in source code, .env.example, the report, or the project ZIP.
+- /health reported: database connected; ai_configured=true.
+- A real teacher form request succeeded using Gemini 3.1 Flash Lite and saved one validated question draft in the pending teacher-review queue. It was not auto-published.
+- A real student feedback request succeeded using a submitted demo attempt's actual answer evidence and was saved for the student result page.
+- The configured Gemini 3.8 Flash model and Gemini 3.7 Flash returned high-demand responses/timeouts during testing. The app now retries actual API requests with the configured Flash Lite fallback models; no sample AI output is substituted.
+- The key's exact value and generated question/review text are intentionally not recorded in this file.

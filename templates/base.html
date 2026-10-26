@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="preview-token" content="{{ preview_token or '' }}">
+  <title>{% block title %}ExamAI{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">E</span><span>Exam<span class="accent">AI</span><small>ASSESS · LEARN · IMPROVE</small></span></a>
+    {% if current_user %}
+    <nav class="nav-links">
+      {% if current_user.role == 'TEACHER' %}
+        <a href="{{ url_for('teacher_dashboard') }}">Overview</a>
+        <a href="{{ url_for('teacher_exams') }}">Exams</a>
+        <a href="{{ url_for('teacher_drafts') }}">AI review</a>
+      {% else %}
+        <a href="{{ url_for('student_dashboard') }}">My learning</a>
+      {% endif %}
+      <span class="nav-user"><span class="avatar">{{ current_user.name[:1]|upper }}</span>{{ current_user.name }}</span>
+      <form method="post" action="{{ url_for('logout') }}" class="inline-form"><input type="hidden" name="_csrf" value="{{ csrf_token() }}"><button class="nav-logout" type="submit">Sign out</button></form>
+    </nav>
+    {% else %}<nav><a href="{{ url_for('login') }}">Sign in</a><a class="button button-small" href="{{ url_for('register') }}">Student registration</a></nav>{% endif %}
+  </header>
+  <main class="page-shell">
+    {% with messages=get_flashed_messages(with_categories=true) %}
+      {% if messages %}<div class="flash-stack">{% for category,message in messages %}<div class="flash flash-{{ category }}">{{ message }}<button type="button" aria-label="Dismiss" onclick="this.parentElement.remove()">×</button></div>{% endfor %}</div>{% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="footer"><span>ExamAI · AI-powered online assessment</span><span>Marks are computed by the application, not by AI.</span></footer>
+  {% if preview_token %}<script>
+    (() => {
+      const token = {{ preview_token|tojson }};
+      document.querySelectorAll('form').forEach((form) => {
+        if (!form.querySelector('input[name="preview_token"]')) {
+          const field = document.createElement('input');
+          field.type = 'hidden'; field.name = 'preview_token'; field.value = token;
+          form.appendChild(field);
+        }
+        if (!form.hasAttribute('action')) form.action = window.location.pathname + window.location.search;
+      });
+    })();
+  </script>{% endif %}
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
+</body></html>
